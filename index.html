@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday Love</title>
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <style>
+        body {
+            font-family: 'Comic Sans MS', cursive; 
+            text-align: center;
+            margin: 0;
+            padding: 20px;
+            background: linear-gradient(to right, #b8f4ff, #ff66b2, #eb1aeb); 
+        }
+        #container {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: #c7f6ff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            color: #ff66b2; /* Pink color for the heading */
+        }
+        p {
+            font-size: 22px; /* Larger font size for the messages */
+            color: #333;
+            line-height: 1.6;
+        }
+        img {
+            max-width: 65%;
+            border-radius: 5px;
+            margin-bottom: 15px;
+        }
+        @keyframes moveAround {
+            0%, 100% {
+                transform: translate(0, 0);
+            }
+        }
+        
+        #movingButton {
+            position: absolute;
+            padding: 20px 40px;
+            background-color: #eb85ff;
+            color: #fff;
+            border: 1px solid #fff;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 22px;
+        }
+    </style>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var container = document.getElementById('container');
+
+            function getRandomTranslation() {
+                return Math.floor(Math.random() * -150) + 180; 
+            }
+
+            function startRandomAnimation() {
+                function updatePosition() {
+                    var randomX = getRandomTranslation() + 'px';
+                    var randomY = getRandomTranslation() + 'px';
+
+                    container.style.transition = 'transform 2.5s ease-in-out'; 
+                    container.style.transform = 'translate(' + randomX + ', ' + randomY + ')';
+                }
+
+                setInterval(updatePosition, 4000); 
+                updatePosition(); 
+            }
+
+            startRandomAnimation();
+        });
+
+        function moveButton() {
+            const button = document.getElementById('movingButton');
+
+            // Set random position
+            const maxX = window.innerWidth - button.clientWidth;
+            const maxY = window.innerHeight - button.clientHeight;
+
+            const randomX = Math.floor(Math.random() * maxX);
+            const randomY = Math.floor(Math.random() * maxY);
+
+            button.style.left = `${randomX}px`;
+            button.style.top = `${randomY}px`;
+        }
+		
+		function toggleFullscreen() {
+        const img = document.getElementById('fullscreenImage');
+        if (!document.fullscreenElement) {
+            img.requestFullscreen().catch(err => {
+                console.error(`Error attempting to enable fullscreen: ${err.message}`);
+            });
+        } else {
+            document.exitFullscreen();
+        }
+    }
+    </script>
+</head>
+<body>
+    <button id="movingButton" onmouseover="moveButton()">I love you baka!</button>
+    <div id="container">
+        <h1>Happy Birthday, Hana!</h1>
+        <p>================================================</p>
+        <p>My Love,</p>
+        <p>First of all I'm sorry that I have to start by apologizing, but I'm really sorry I haven't been there for you too much lately. I know you're going 
+        to slay the exam and I hope you'll manage to enjoy the time spent with the dear ones.</p>
+        <p>I must say once again that I'm sorry this is all I could come up with but I just want to let you know that I LOVE YOU so much still and I really hope everything will get back to normal ASAP.</p>
+        <p>================================================</p>
+
+        <p>With love, your hubby</p>
+
+        <img id="fullscreenImage" src="loveu.jpg" onclick="toggleFullscreen()" alt="Personalized Image">
+    </div>
+</body>
+</html>
